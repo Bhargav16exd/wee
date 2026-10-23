@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DeskBuddy character gallery</title>
+    <style>
+      body { margin: 0; background: #191919; color: #f4f5fb; font-family: -apple-system, 'Segoe UI', sans-serif; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; padding: 20px; }
+      .cell { background: #202020; border: 1px solid rgba(255,255,255,.094); border-radius: 8px; padding: 12px; text-align: center; }
+      .cell span { font-size: 12px; opacity: .7; display: block; margin-top: 4px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/gallery.tsx"></script>
+  </body>
+</html>

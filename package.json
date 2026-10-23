@@ -1,0 +1,12 @@
+{
+  "name": "deskbuddy",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["server", "desktop"],
+  "scripts": {
+    "server": "npm run start -w server",
+    "desktop": "npm run dev -w desktop",
+    "build:mac": "npm run build:mac -w desktop",
+    "build:win": "npm run build:win -w desktop"
+  }
+}

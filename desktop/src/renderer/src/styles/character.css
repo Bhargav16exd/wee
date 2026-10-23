@@ -1,0 +1,93 @@
+/* Pixel-art sprites: 1 SVG user unit = 1 pixel. Every animation moves whole pixels
+   with steps() so nothing ever smears. transform-box: view-box lets the inline
+   transform-origin be given in pixel coordinates. */
+.ch { overflow: visible; display: block; shape-rendering: crispEdges; }
+.ch * { transform-box: view-box; }
+
+.ch.offline { filter: grayscale(1) brightness(.8) opacity(.6); }
+
+.ch .bob     { animation: px-bob 1.6s steps(1) infinite; }
+.ch .eye     { animation: px-blink 4.4s steps(1) infinite; }
+
+/* working */
+.ch .type-l  { animation: px-type .32s steps(1) infinite; }
+.ch .type-r  { animation: px-type .32s steps(1) infinite; animation-delay: .16s; }
+.ch .glow    { animation: px-glow 1.4s steps(1) infinite; }
+
+/* steam (mug + ramen) */
+.ch .steam    { animation: px-steam 2.1s steps(1) infinite; opacity: 0; }
+.ch .steam.s2 { animation-delay: .7s; }
+.ch .steam.s3 { animation-delay: 1.4s; }
+
+/* lunch */
+.ch .eat     { animation: px-eat 1.8s steps(1) infinite; }
+.ch .chew    { animation: px-chew 1.8s steps(1) infinite; }
+
+/* away / idle */
+.ch .swing   { animation: px-swing 1.4s steps(1) infinite; }
+.ch .wave    { animation: px-wave .7s steps(1) infinite; }
+.ch .wave-l  { animation: px-wave-l .7s steps(1) infinite; }
+
+/* custom */
+.ch .sound    { animation: px-sound 1s steps(1) infinite; opacity: 0; }
+.ch .sound.s2 { animation-delay: .5s; }
+
+/* meeting: typing-indicator dots */
+.ch .dot    { animation: px-dot 1.2s steps(1) infinite; opacity: .3; }
+.ch .dot.d2 { animation-delay: .4s; }
+.ch .dot.d3 { animation-delay: .8s; }
+
+/* sleeping */
+.ch-sleeping .bob { animation-duration: 3.2s; }
+.ch .zz    { animation: px-zz 2.4s steps(1) infinite; opacity: 0; }
+.ch .zz.z2 { animation-delay: .8s; }
+.ch .zz.z3 { animation-delay: 1.6s; }
+
+/* workout */
+.ch .lift { animation: px-lift 1.2s steps(1) infinite; }
+.ch .drop { animation: px-drop 1.6s steps(1) infinite; opacity: 0; }
+
+@keyframes px-bob   { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-1px) } }
+@keyframes px-blink { 0%, 93%, 100% { transform: scaleY(1) } 94%, 97% { transform: scaleY(.5) } }
+@keyframes px-type  { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-1px) } }
+@keyframes px-glow  { 0%, 100% { opacity: 1 } 50% { opacity: .55 } }
+@keyframes px-steam {
+  0%   { opacity: 0;  transform: translateY(0) }
+  15%  { opacity: .9; transform: translateY(0) }
+  45%  { opacity: .7; transform: translateY(-1px) }
+  70%  { opacity: .4; transform: translateY(-2px) }
+  90%  { opacity: 0;  transform: translateY(-3px) }
+}
+@keyframes px-eat {
+  0%, 18%  { transform: translate(0, 0) }
+  30%      { transform: translate(-3px, -3px) }
+  42%, 70% { transform: translate(-7px, -7px) }
+  82%      { transform: translate(-3px, -3px) }
+  100%     { transform: translate(0, 0) }
+}
+@keyframes px-chew {
+  0%, 44%  { transform: scaleY(1) }
+  48%, 54% { transform: scaleY(2) }
+  58%      { transform: scaleY(1) }
+  62%, 68% { transform: scaleY(2) }
+  72%, 100%{ transform: scaleY(1) }
+}
+@keyframes px-swing  { 0%, 100% { transform: translateX(0) } 50% { transform: translateX(1px) } }
+@keyframes px-wave   { 0%, 100% { transform: translate(0, 0) } 50% { transform: translate(1px, -1px) } }
+@keyframes px-wave-l { 0%, 100% { transform: translate(0, 0) } 50% { transform: translate(-1px, -1px) } }
+@keyframes px-sound  { 0%, 100% { opacity: 0; transform: translateX(0) } 25%, 60% { opacity: 1; transform: translateX(1px) } }
+@keyframes px-dot    { 0%, 100% { opacity: .3 } 25%, 55% { opacity: 1 } }
+@keyframes px-zz {
+  0%   { opacity: 0;  transform: translateY(0) }
+  12%  { opacity: 1;  transform: translateY(0) }
+  40%  { opacity: 1;  transform: translateY(-1px) }
+  65%  { opacity: .7; transform: translateY(-2px) }
+  85%  { opacity: .3; transform: translateY(-3px) }
+  95%  { opacity: 0 }
+}
+@keyframes px-lift { 0%, 100% { transform: translateY(0) } 25% { transform: translateY(-2px) } 50% { transform: translateY(-4px) } 75% { transform: translateY(-2px) } }
+@keyframes px-drop { 0%, 100% { opacity: 0; transform: translateY(0) } 30% { opacity: 1 } 60% { opacity: 1; transform: translateY(1px) } 85% { opacity: 0; transform: translateY(2px) } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ch * { animation-duration: 0s !important; }
+}
